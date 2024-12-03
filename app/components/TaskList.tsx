@@ -1,24 +1,17 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import { collection, query, onSnapshot } from 'firebase/firestore';
 import { db } from '@/app/lib/firebase';
 import TaskItem from '@/app/components/TaskItem';
 import { Task } from '@/app/types/task';
 
-interface TaskListProps {
-  groupId: string;
-}
-
-export default function TaskList({ groupId }: TaskListProps) {
+export default function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
-    const q = query(
-      collection(db, 'tasks'),
-      where('groupId', '==', groupId)
-    );
-    
+    const q = query(collection(db, 'tasks'));
+
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const taskList: Task[] = [];
       querySnapshot.forEach((doc) => {
@@ -27,14 +20,17 @@ export default function TaskList({ groupId }: TaskListProps) {
       setTasks(taskList);
     });
 
+    // Cleanup listener on unmount
     return () => unsubscribe();
-  }, [groupId]);
+  }, []);
 
   return (
     <ul className="space-y-4">
-      {tasks.map((task) => (
-        <TaskItem key={task.id} task={task} />
-      ))}
+      {tasks.length === 0 ? (
+        <li>No tasks found</li>
+      ) : (
+        tasks.map((task) => <TaskItem key={task.id} task={task} />)
+      )}
     </ul>
   );
 }

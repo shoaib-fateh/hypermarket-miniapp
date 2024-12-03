@@ -4,11 +4,7 @@ import { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '@/app/lib/firebase';
 
-interface TaskFormProps {
-  groupId: string;
-}
-
-export default function TaskForm({ groupId }: TaskFormProps) {
+export default function TaskForm() {
   const [title, setTitle] = useState('');
   const [error, setError] = useState<string | null>(null);
 
@@ -21,7 +17,6 @@ export default function TaskForm({ groupId }: TaskFormProps) {
         title: title.trim(),
         completed: false,
         createdAt: new Date(),
-        groupId,
       });
 
       setTitle('');
@@ -39,9 +34,9 @@ export default function TaskForm({ groupId }: TaskFormProps) {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Add a new task"
-        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[#000]"
       />
-      {error && <p className="text-red-500">{error}</p>} {/* Show error message */}
+      {error && <p className="text-red-500">{error}</p>}
       <button
         type="submit"
         className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors"

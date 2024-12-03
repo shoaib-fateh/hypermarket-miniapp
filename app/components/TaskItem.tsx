@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { updateDoc, doc, deleteDoc } from 'firebase/firestore';
-
 import { db } from '@/app/lib/firebase';
 import { Task } from '@/app/types/task';
 
@@ -25,7 +24,7 @@ export default function TaskItem({ task }: TaskItemProps) {
   };
 
   return (
-    <li className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
+    <li className="flex items-center justify-between p-4 bg-white rounded-lg shadow text-[#000]">
       <div className="flex items-center space-x-4">
         <input
           type="checkbox"
