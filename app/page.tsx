@@ -3,11 +3,7 @@ import TaskList from "./components/TaskList";
 import TaskForm from "./components/TaskForm";
 import Image from "next/image";
 
-interface Props {
-  groupId: string;
-}
-
-export default function Home({ groupId }: Props) {
+export default function Home() {
   return (
     <Suspense fallback={<div className="p-8">Loading...</div>}>
       <div className="grid grid-rows-[auto_1fr_auto] min-h-screen p-8 gap-8">
@@ -21,7 +17,7 @@ export default function Home({ groupId }: Props) {
             height={20}
             priority
           />
-          <h1 className="text-2xl font-bold">Task Board - Group {groupId}</h1>
+          <h1 className="text-2xl font-bold">Task Board</h1>
         </header>
 
         {/* Main Content Section */}
