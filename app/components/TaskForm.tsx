@@ -41,6 +41,7 @@ export default function TaskForm({ groupId }: TaskFormProps) {
         placeholder="Add a new task"
         className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
+      {error && <p className="text-red-500">{error}</p>} {/* Show error message */}
       <button
         type="submit"
         className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors"
