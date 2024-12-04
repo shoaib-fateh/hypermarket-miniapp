@@ -7,25 +7,15 @@ if (!BOT_TOKEN) {
 
 const bot = new Telegraf(BOT_TOKEN);
 
+
 // Basic commands
 bot.command('start', (ctx: any) => {
-  ctx.reply('Welcome to TaskVaultBot! 🚀\nUse /help to see available commands.');
-});
-
-bot.command('help', (ctx: any) => {
-  ctx.reply(
-    'Available commands:\n' +
-    '/start - Start the bot\n' +
-    '/help - Show this help message\n' +
-    '/webapp - Open the Mini App'
-  );
-});
-
-bot.command('webapp', (ctx: any) => {
-  ctx.reply('Open Web App', {
+  ctx.reply('Let\'s get started 🛒' + '\n\n' +
+  'Please tap the button below to start recording and checking your tasks', {
     reply_markup: {
       inline_keyboard: [[
-        { text: "Open App", web_app: { url: WEBAPP_URL || '' }}
+        { text: "Mange Your Tasks", web_app: { url: WEBAPP_URL || '' }}
+
       ]]
     }
   });
