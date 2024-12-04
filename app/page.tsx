@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import TaskList from "./components/TaskList";
 import TaskForm from "./components/TaskForm";
 import Image from "next/image";
+import TelegramLoginButton from "./components/TelegramLoginButton";
 
 export default function Home() {
   return (
@@ -22,6 +23,9 @@ export default function Home() {
 
         {/* Main Content Section */}
         <main className="flex flex-col gap-8">
+          <h1>Login with Telegram</h1>
+          <TelegramLoginButton />
+
           <TaskForm />
           <TaskList />
         </main>
